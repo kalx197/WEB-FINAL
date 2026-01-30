@@ -1,0 +1,63 @@
+/* Custom Variables */
+:root {
+    --primary: #111;
+    --accent: #7a7a7a;
+    --bg: #ffffff;
+    --section-gap: 80px;
+}
+
+/* Reset & Base */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; color: var(--primary); line-height: 1.6; }
+.container { width: 90%; max-width: 1200px; margin: 0 auto; }
+
+/* Navigation */
+.nav-flex { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
+.nav-links { display: flex; list-style: none; gap: 30px; }
+.nav-links a { text-decoration: none; color: var(--primary); font-weight: 500; font-size: 0.9rem; text-transform: uppercase; }
+
+/* Hero Section */
+.hero {
+    height: 90vh;
+    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
+                url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+/* Grid System */
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+}
+
+/* Product Card Micro-interactions */
+.product-card { position: relative; cursor: pointer; }
+.product-card img { width: 100%; aspect-ratio: 4/5; object-fit: cover; transition: 0.4s ease; }
+.product-card:hover img { filter: brightness(0.8); }
+
+.add-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.add-btn:hover { background: #333; }
+
+/* Mobile Menu Adjustments */
+@media (max-width: 768px) {
+    .nav-links { display: none; } /* In a real project, you'd add a hamburger menu here */
+    .hero h1 { font-size: 2.5rem; }
+}
