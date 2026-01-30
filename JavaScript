@@ -1,0 +1,48 @@
+// 1. Data Object
+const productData = [
+    { id: 1, name: "Heavyweight Box Tee", price: 55, img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600" },
+    { id: 2, name: "Slim Fit Chino", price: 85, img: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600" },
+    { id: 3, name: "Technical Parka", price: 210, img: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600" },
+    { id: 4, name: "Wool Beanie", price: 35, img: "https://images.unsplash.com/photo-1576871337622-98d48d1cf021?w=600" }
+];
+
+// 2. Initialize App
+document.addEventListener('DOMContentLoaded', () => {
+    renderProducts();
+    updateCartDisplay();
+});
+
+// 3. Render Products to DOM
+function renderProducts() {
+    const grid = document.getElementById('product-grid');
+    if (!grid) return;
+
+    grid.innerHTML = productData.map(product => `
+        <article class="product-card">
+            <img src="${product.img}" alt="${product.name}" loading="lazy">
+            <div class="product-info">
+                <h3>${product.name}</h3>
+                <p>$${product.price}.00</p>
+                <button class="add-btn" onclick="handleAddToCart(${product.id})">Add to Bag</button>
+            </div>
+        </article>
+    `).join('');
+}
+
+// 4. Cart Logic with LocalStorage
+function handleAddToCart(productId) {
+    let cart = JSON.parse(localStorage.getItem('verve_cart')) || [];
+    cart.push(productId);
+    localStorage.setItem('verve_cart', JSON.stringify(cart));
+    
+    updateCartDisplay();
+    alert("Added to your bag!"); // Replace with a custom toast for extra points
+}
+
+function updateCartDisplay() {
+    const countElement = document.getElementById('cart-count');
+    const cart = JSON.parse(localStorage.getItem('verve_cart')) || [];
+    if (countElement) {
+        countElement.textContent = cart.length;
+    }
+}
